@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 
@@ -15,10 +16,7 @@ func main() {
 	paths := []string{path + "/devcommands"}
 
     // Discover all the directories called `devcommands` from
-    // where the command is executed, all the way up to /
-    // e.g getcwd()/devcommands
-    // ../devcommands
-    // ../../devcommands etc. etc.
+    // where the command is executed, and up to the root.
     for path != "/" {
     	path = filepath.Dir(path)
     	devcommandsPath := filepath.Join(path, "devcommands")
@@ -27,9 +25,17 @@ func main() {
     	}
     }
 
-    // + Add the homebrew bin folders
-	paths = append(paths, "/opt/homebrew/bin/devcommands") // Apple silicon
-	paths = append(paths, "/usr/local/bin/devcommands") // Intel path
+    // + Add the homebrew etc folders
+	paths = append(paths, "/opt/homebrew/etc/devcommands") // Apple silicon
+	paths = append(paths, "/usr/local/etc/devcommands") // Intel path
+
+    // Display all path if DEV_CLI_DEBUG env variable is set
+    if os.Getenv("DEV_CLI_DEBUG") != "" {
+    	fmt.Fprintln(os.Stderr, "[DEBUG] Discovered command paths:")
+    	for _, path := range paths {
+    		fmt.Fprintln(os.Stderr, "[DEBUG]  -", path)
+    	}
+    }
 
 	cli, err := exoskeleton.New(paths)
 	if err != nil {
