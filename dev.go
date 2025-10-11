@@ -42,6 +42,20 @@ func main() {
 		panic(err)
 	}
 
+	// Handle completion script generation.
+	// This is a special case that is not handled by the exoskeleton command
+	// discovery. It is invoked by running `dev completion <shell>`.
+	if len(os.Args) > 1 && os.Args[1] == "completion" {
+		if len(os.Args) != 3 {
+			fmt.Fprintln(os.Stderr, "Usage: dev completion <bash|zsh>")
+			os.Exit(1)
+		}
+		shell := os.Args[2]
+		commandName := filepath.Base(os.Args[0])
+		err := exoskeleton.GenerateCompletionScript(commandName, shell, os.Stdout)
+		os.Exit(exit.FromError(err))
+	}
+
 	// Identify the subcommand being invoked from the arguments.
 	cmd, args, err := cli.Identify(os.Args[1:])
 	if err != nil {
