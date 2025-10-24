@@ -3,5 +3,14 @@
 # HELP: USAGE
 #    version
 
-echo "TODO2"
-# brew info dev-commands
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# Path for cached JSON
+CACHE="$DIR/dev-cli.json"
+
+# Generate cache if missing
+if [[ ! -f "$CACHE" ]]; then
+    HOMEBREW_NO_AUTO_UPDATE=1 brew info --json=v1 dev-cli > "$CACHE"
+fi
+
+# Extract version
+jq -r '.[0].installed[0].version' "$CACHE"
