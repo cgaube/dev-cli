@@ -62,6 +62,11 @@ func main() {
 		panic(err)
 	}
 
+    if os.Getenv("DEV_CLI_DEBUG") != "" {
+    	fmt.Fprintf(os.Stderr, "[DEBUG] command name: %s\n", cmd.Name())
+    	fmt.Fprintf(os.Stderr, "[DEBUG] command path: %s\n", cmd.Path())
+    }
+
 	// Execute the subcommand.
 	err = cmd.Exec(cli, args, os.Environ())
 
