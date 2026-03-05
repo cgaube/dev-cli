@@ -7,7 +7,7 @@ Dev CLI is a command-line interface that uses Square's Exoskeleton framework to 
 This approach enables:
 - A centralized command entrypoint for all development utilities
 - Automatic discovery of subcommands from `devcommands` folders without manual registration
-- Support for subcommands written in any language (Go, Python, Bash, etc.)
+- Support for subcommands written in any language (Node.js, Go, Python, Bash, etc.)
 - Tab completion and help system integration
 - Modular architecture where each tool can be developed and released independently
 
