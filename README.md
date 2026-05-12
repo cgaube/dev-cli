@@ -2,7 +2,7 @@
 
 ## What ?
 
-Dev CLI is a command-line interface that uses Square's Exoskeleton framework to create a unified `dev` binary. It automatically discovers and executes subcommands from `devcommands` folders in your PATH, allowing you to manage multiple development tools through a single interface.
+Dev CLI is a command-line interface that uses [Square's Exoskeleton framework](https://github.com/square/exoskeleton) to create a unified `dev` binary. It automatically discovers and executes subcommands from `devcommands` folders in your PATH, allowing you to manage multiple development tools through a single interface.
 
 This approach enables:
 - A centralized command entrypoint for all development utilities
