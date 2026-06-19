@@ -5,6 +5,7 @@
 Dev CLI is a command-line interface that uses [Square's Exoskeleton framework](https://github.com/square/exoskeleton) to create a unified `dev` binary. It automatically discovers and executes subcommands from `devcommands` folders in your PATH, allowing you to manage multiple development tools through a single interface.
 
 This approach enables:
+
 - A centralized command entrypoint for all development utilities
 - Automatic discovery of subcommands from `devcommands` folders without manual registration
 - Support for subcommands written in any language (Node.js, Go, Python, Bash, etc.)
@@ -16,8 +17,11 @@ The `dev` binary acts as a dispatcher that finds available commands in `devcomma
 ## Install
 
 ```shell
-brew tap cgaube/devcommands
-brew install dev-cli
+# 1. Trust the custom taps (Required for Homebrew 6.0+)
+brew trust cgaube/devcommands
+
+# 2. Install the dev cli binary
+brew install cgaube/devcommands/dev-cli
 ```
 
 ## Usage
