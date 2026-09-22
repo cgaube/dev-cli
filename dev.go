@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 
 	"github.com/square/exit"
-	"github.com/square/exoskeleton"
+	"github.com/square/exoskeleton/v2"
 )
 
 const Version = "0.0.1"
